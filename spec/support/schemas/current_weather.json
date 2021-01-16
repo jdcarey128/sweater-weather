@@ -1,0 +1,12 @@
+{
+  "datetime": { "type" : "string", "format": "date-time" },
+  "sunrise" : { "type" : "string", "format": "date-time" },
+  "sunset" : { "type" : "string", "format": "date-time" },
+  "temperature" : { "type" : "float" },
+  "feels_like" : { "type" : "float" },
+  "humidity" : { "type" : "numeric" },
+  "uvi" : { "type" : "numeric" },
+  "visibility" : { "type" : "numeric" },
+  "conditions" : { "type" : "text" },
+  "icon" : { "type" : "string" }
+}

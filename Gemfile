@@ -24,6 +24,7 @@ group :test do
   gem 'simplecov'
   gem 'webmock' 
   gem 'vcr'
+  gem 'json-schema'
 end 
 
 group :development, :test do
