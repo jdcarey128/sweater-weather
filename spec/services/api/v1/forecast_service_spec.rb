@@ -9,6 +9,7 @@ RSpec.describe Api::V1::ForecastService do
       # TODO: Ask Ian/Dionne about method below to match json schema (currently passes everything)
       # expect(result).to match_response_schema('weather_forecast')
 
+      # TODO: Replace below with above 
       current = result[:current]
       hourly = result[:hourly][0]
       daily = result[:daily][0]

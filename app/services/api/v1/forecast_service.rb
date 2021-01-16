@@ -8,6 +8,7 @@ module Api
           req.params['lat'] = coords[:lat]
           req.params['lon'] = coords[:lng]
           req.params['exclude'] = 'minutely,alerts'
+          req.params['units'] = 'imperial'
         end
         JSON.parse(response.body, symbolize_names: true)
       end
