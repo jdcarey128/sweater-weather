@@ -1,15 +1,24 @@
 require 'rails_helper' 
 
-RSpec.request 'Forecast' do 
+RSpec.describe 'Forecast' do 
   describe 'with valid user api_key' do 
-    before :all do 
-      user = create(:user)
-      auth_header = { "Auth-Token" => user.api_key}
+    before :each do 
+      coords = {:lat=>39.738453, :lng=>-104.984853}
+      json = File.read('spec/fixtures/get_forecast.json')
+      forecast = JSON.parse(json, symbolize_names: true)
 
-      get v1_forecast_path, {}, auth_header
+      allow(Api::V1::CoordinateService).to receive(:get_coordinates).with('denver,co').and_return(coords)
+      allow(Api::V1::ForecastService).to receive(:get_forecast).with(coords).and_return(forecast)
+
+      headers = { 
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+
+      get '/api/v1/forecast?location=denver,co', headers: headers
       @response = JSON.parse(response.body) 
-      
     end
+
     it 'returns only 3 root attributes' do 
       expect(@response.status).to eq 200
       expect(@response['id']).to eq(null)
