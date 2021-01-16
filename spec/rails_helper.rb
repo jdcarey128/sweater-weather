@@ -6,6 +6,7 @@ SimpleCov.add_filter 'spec'
 
 require 'webmock/rspec'
 require 'spec_helper'
+require 'json-schema'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
@@ -26,7 +27,7 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -81,5 +82,6 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.filter_sensitive_data('<MAPQUEST_KEY>') { ENV['MAPQUEST_KEY'] }
+  config.filter_sensitive_data('<OPEN_WEATHER_KEY>') { ENV['OPEN_WEATHER_KEY'] }
   config.default_cassette_options = { re_record_interval: 30.days }
 end
