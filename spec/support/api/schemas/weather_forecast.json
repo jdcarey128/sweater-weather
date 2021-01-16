@@ -1,0 +1,89 @@
+{
+  "lat" : { "type" : "float" },
+  "lon" : { "type" : "float" },
+  "timezone" : { "type" : "string" },
+  "timezone_offset" : { "type" : "numeric" },
+  "current" : {
+    "dt" : { "type" : "numeric" },
+    "sunrise" : { "type" : "numeric" },
+    "sunset" : { "type" : "numeric" },
+    "temp" : { "type" : "numeric" },
+    "feels_like" : { "type" : "numeric" },
+    "pressure" : { "type" : "numeric" },
+    "humidity" : { "type" : "numeric" },
+    "dew_point" : { "type" : "numeric" },
+    "uvi" : { "type" : "numeric" },
+    "clouds" : { "type" : "numeric" },
+    "visibility" : { "type" : "numeric" },
+    "wind_speed" : { "type" : "numeric" },
+    "wind_deg" : { "type" : "numeric" },
+    "weather" : [
+      {
+        "id" : { "type" : "numeric" },
+        "main" : { "type" : "string" },
+        "description" : { "type" : "string" },
+        "icon" : { "type" : "string" }
+      }
+    ]
+  },
+  "hourly" : [
+    { 
+      "dt" : { "type" : "numeric" },
+      "temp" : { "type" : "numeric" },
+      "feels_like" : { "type" : "numeric" },
+      "pressure" : { "type" : "numeric" },
+      "humidity" : { "type" : "numeric" },
+      "dew_point" : { "type" : "numeric" },
+      "uvi" : { "type" : "numeric" },
+      "clouds" : { "type" : "numeric" },
+      "visibility" : { "type" : "numeric" },
+      "wind_speed" : { "type" : "numeric" },
+      "wind_deg" : { "type" : "numeric" },
+      "weather" : [
+        {
+          "id" : { "type" : "numeric" },
+          "main" : { "type" : "string" },
+          "description" : { "type" : "string" },
+          "icon" : { "type" : "string" }
+        }
+      ],
+      "pop" : { "type" : "numeric" }
+    }
+  ],
+  "daily" : [
+    {
+      "dt" : { "type" : "numeric" },
+      "sunrise" : { "type" : "numeric" },
+      "sunset" : { "type" : "numeric" },
+      "temp" : {
+        "day" : { "type" : "numeric" },
+        "min" : { "type" : "numeric" },
+        "max" : { "type" : "numeric" },
+        "night" : { "type" : "numeric" },
+        "eve" : { "type" : "numeric" },
+        "morn" : { "type" : "numeric" }
+      },
+      "feels_like" : {
+        "day" : { "type" : "numeric" },
+        "night" : { "type" : "numeric" },
+        "eve" : { "type" : "numeric" },
+        "morn" : { "type" : "numeric" }
+      },
+      "pressure" : { "type" : "numeric" },
+      "humidity" : { "type" : "numeric" },
+      "dew_point" : { "type" : "numeric" },
+      "wind_speed" : { "type" : "numeric" },
+      "weather" : [
+        {
+          "id" : { "type" : "numeric" },
+          "main" : { "type" : "string" },
+          "description" : { "type" : "string" },
+          "icon" : { "type" : "string" }
+        }
+      ],
+      "clouds" : { "type" : "numeric" },
+      "pop" : { "type" : "numeric" },
+      "uvi" : { "type" : "numeric" }
+    }
+  ]
+}
