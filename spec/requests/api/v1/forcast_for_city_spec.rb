@@ -130,8 +130,26 @@ RSpec.describe 'Forecast' do
     end 
   end
 
-  describe 'with invalid city entry' do 
+  describe 'error handling' do 
+    it 'returns an error message if a bad request is made' do 
+      coords = {:lat=>39.738453, :lng=>''}
+      allow(Api::V1::CoordinateService).to receive(:get_coordinates).with('denver,co').and_return(coords)
+      
+      
+      headers = { 
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+      
+      VCR.use_cassette('forecast_error') do 
+        get '/api/v1/forecast?location=denver,co', headers: headers
+      end
 
+      expect(response.status).to eq 400
+      result = JSON.parse(response.body, symbolize_names: true)
+      expect(result[:error]).to eq(400)
+      expect(result[:message]).to be_a(String)
+    end
   end
   
 end 
