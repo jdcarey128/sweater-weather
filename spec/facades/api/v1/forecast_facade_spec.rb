@@ -66,5 +66,19 @@ RSpec.describe Api::V1::ForecastFacade do
       expect(result[:error]).to eq(400)
       expect(result[:message]).to eq("Unknown Location: #{location}")
     end
+
+    it 'returns an error message with invalid forecast search' do 
+      location = 'error,city'
+      coords = {:lat=>1000001, :lng=>-104.984853}
+      error = {:cod => '400', :message => "wrong latitude"}
+      allow(Api::V1::CoordinateService).to receive(:get_coordinates).with(location).and_return(coords)
+      allow(Api::V1::ForecastService).to receive(:get_forecast).with(coords).and_return(error)
+
+      result = Api::V1::ForecastFacade.get_forecast(location)
+
+      expect(result).to be_a(Hash)
+      expect(result[:error]).to eq(400)
+      expect(result[:message]).to eq('wrong latitude')
+    end
   end
 end
