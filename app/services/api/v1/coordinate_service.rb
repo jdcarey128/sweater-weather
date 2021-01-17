@@ -7,7 +7,8 @@ module Api
           req.params['location'] = location
           req.params['maxResults'] = 1
         end
-        parse_json(response.body)[:results][0][:locations][0][:latLng]
+        return parse_json(response.body)[:results][0][:locations][0][:latLng] unless response.body.empty?
+        {:error => 400, :message => "Unknown Location: #{location}"}
       end
 
       def self.parse_json(json)

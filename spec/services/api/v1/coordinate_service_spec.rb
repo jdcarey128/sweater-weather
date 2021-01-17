@@ -22,10 +22,13 @@ RSpec.describe Api::V1::CoordinateService do
       expect(result[:lng]).to be_a(Numeric)
     end
 
-    xit 'returns an error for a non-existent city', :vcr do 
-      result = Api::V1::CoordinateService.get_coordinates(';lkaso')
+    it 'returns an error for a non-existent city', :vcr do 
+      location = '#@*#%&'
+      result = Api::V1::CoordinateService.get_coordinates(location)
 
-
+      expect(result).to be_a(Hash)
+      expect(result[:error]).to eq(400)
+      expect(result[:message]).to eq("Unknown Location: #{location}")
     end
   end
 end
