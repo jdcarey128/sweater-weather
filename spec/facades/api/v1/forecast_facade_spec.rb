@@ -53,4 +53,18 @@ RSpec.describe Api::V1::ForecastFacade do
       expect(hourly[:icon]).to be_a(String)
     end
   end
+
+  describe 'forecast facade errors' do 
+    it 'returns an error message with invalid coordinates' do 
+      location = 'error,city'
+      error = {:error => 400, :message => "Unknown Location: #{location}"}
+      allow(Api::V1::CoordinateService).to receive(:get_coordinates).with(location).and_return(error)
+
+      result = Api::V1::ForecastFacade.get_forecast(location)
+
+      expect(result).to be_a(Hash)
+      expect(result[:error]).to eq(400)
+      expect(result[:message]).to eq("Unknown Location: #{location}")
+    end
+  end
 end
