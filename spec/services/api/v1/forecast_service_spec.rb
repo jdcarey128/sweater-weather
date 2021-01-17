@@ -43,4 +43,15 @@ RSpec.describe Api::V1::ForecastService do
       expect(daily[:pop]).to be_a(Numeric)
     end
   end
+
+  describe 'get forecast errors' do 
+    it 'returns an error hash for invalid coords', :vcr do 
+      coords = {:lat=>1000001, :lng=>-104.984853}
+      result = Api::V1::ForecastService.get_forecast(coords)
+
+      expect(result).to be_a(Hash)
+      expect(result[:cod]).to eq('400')
+      expect(result[:message]).to eq('wrong latitude')
+    end
+  end
 end

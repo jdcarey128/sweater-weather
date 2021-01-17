@@ -14,7 +14,6 @@ module Api
       end
 
       private 
-      
       def self.make_conn
         Faraday.new('https://api.openweathermap.org/data/2.5') do |conn|
           conn.params['appid'] = ENV['OPEN_WEATHER_KEY']
