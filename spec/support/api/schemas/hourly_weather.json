@@ -1,0 +1,8 @@
+{
+  "time" : { "type" : "string", "format" : "time" },
+  "temperature" : { "type" : "float" },
+  "wind_speed" : { "type" : "string" },
+  "wind_direction" : { "type" : "string" },
+  "conditions" : { "type" : "text" },
+  "icon" : { "type" : "string" }
+}
