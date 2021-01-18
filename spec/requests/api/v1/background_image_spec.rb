@@ -42,4 +42,27 @@ RSpec.describe 'Background Image' do
       expect(credits['author_url']).to include('https://unsplash.com/')
     end
   end
+
+  describe 'with an invalid location entry' do 
+    it 'returns an error message' do 
+      headers = { 
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+      
+      @location = ''
+      error = {:error => 400, 
+               :message => "No results found for \'#{@location}\'"}
+
+      allow(Api::V1::BackgroundImageFacade).to receive(:get_image).with(@location).and_return(error)
+
+      get "/api/v1/backgrounds?location=#{@location}", headers: headers
+
+      response_body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq 400
+      expect(response_body[:error]).to eq(400)
+      expect(response_body[:message]).to eq("No results found for \'#{@location}\'")
+    end
+  end
 end
