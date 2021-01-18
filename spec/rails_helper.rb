@@ -83,5 +83,6 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.filter_sensitive_data('<MAPQUEST_KEY>') { ENV['MAPQUEST_KEY'] }
   config.filter_sensitive_data('<OPEN_WEATHER_KEY>') { ENV['OPEN_WEATHER_KEY'] }
+  config.filter_sensitive_data('<UNSPLASH_KEY>') { ENV['UNSPLASH_KEY'] }
   config.default_cassette_options = { re_record_interval: 30.days }
 end

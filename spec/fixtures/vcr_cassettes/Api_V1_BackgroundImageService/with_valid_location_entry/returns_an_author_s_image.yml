@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.unsplash.com/search/photos?client_id=<UNSPLASH_KEY>&order_by=relevant&per_page=1&query=chicago,il
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1583'
+      Server:
+      - Cowboy
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Request-Method:
+      - "*"
+      Access-Control-Allow-Headers:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Link,X-Total,X-Per-Page,X-RateLimit-Limit,X-RateLimit-Remaining
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Link:
+      - <https://api.unsplash.com/search/photos?client_id=<UNSPLASH_KEY>&order_by=relevant&page=3023&per_page=1&query=chicago%2Cil>;
+        rel="last", <https://api.unsplash.com/search/photos?client_id=<UNSPLASH_KEY>&order_by=relevant&page=2&per_page=1&query=chicago%2Cil>;
+        rel="next"
+      X-Total:
+      - '3023'
+      X-Per-Page:
+      - '1'
+      Content-Type:
+      - application/json
+      X-Ratelimit-Limit:
+      - '50'
+      X-Ratelimit-Remaining:
+      - '49'
+      X-Request-Id:
+      - 88da2f03-ccc3-43b8-8657-c254d4317cfc
+      X-Runtime:
+      - '0.196690'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Via:
+      - 1.1 vegur, 1.1 varnish, 1.1 varnish
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 18 Jan 2021 16:52:15 GMT
+      Age:
+      - '0'
+      X-Served-By:
+      - cache-dca17759-DCA, cache-den8228-DEN
+      X-Cache:
+      - MISS, MISS
+      X-Cache-Hits:
+      - 0, 0
+      X-Timer:
+      - S1610988735.802890,VS0,VE246
+      Vary:
+      - Accept-Encoding, Origin,Authorization,client-geo-region
+    body:
+      encoding: ASCII-8BIT
+      string: '{"total":3023,"total_pages":3023,"results":[{"id":"RfeqhK9BdVI","created_at":"2020-10-09T16:46:29-04:00","updated_at":"2021-01-17T20:20:38-05:00","promoted_at":null,"width":4434,"height":2459,"color":"#8cc0f3","blur_hash":"LvDe0]XTogbI%%RjayayM{Rjaefk","description":null,"alt_description":"man
+        and woman sitting on boat on water near city buildings during daytime","urls":{"raw":"https://images.unsplash.com/photo-1602276119625-89aa4061cc35?ixid=MXwxOTkzNTd8MHwxfHNlYXJjaHwxfHxjaGljYWdvLGlsfGVufDB8fHw\u0026ixlib=rb-1.2.1","full":"https://images.unsplash.com/photo-1602276119625-89aa4061cc35?crop=entropy\u0026cs=srgb\u0026fm=jpg\u0026ixid=MXwxOTkzNTd8MHwxfHNlYXJjaHwxfHxjaGljYWdvLGlsfGVufDB8fHw\u0026ixlib=rb-1.2.1\u0026q=85","regular":"https://images.unsplash.com/photo-1602276119625-89aa4061cc35?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=MXwxOTkzNTd8MHwxfHNlYXJjaHwxfHxjaGljYWdvLGlsfGVufDB8fHw\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=1080","small":"https://images.unsplash.com/photo-1602276119625-89aa4061cc35?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=MXwxOTkzNTd8MHwxfHNlYXJjaHwxfHxjaGljYWdvLGlsfGVufDB8fHw\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=400","thumb":"https://images.unsplash.com/photo-1602276119625-89aa4061cc35?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=MXwxOTkzNTd8MHwxfHNlYXJjaHwxfHxjaGljYWdvLGlsfGVufDB8fHw\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=200"},"links":{"self":"https://api.unsplash.com/photos/RfeqhK9BdVI","html":"https://unsplash.com/photos/RfeqhK9BdVI","download":"https://unsplash.com/photos/RfeqhK9BdVI/download","download_location":"https://api.unsplash.com/photos/RfeqhK9BdVI/download"},"categories":[],"likes":5,"liked_by_user":false,"current_user_collections":[],"sponsorship":null,"user":{"id":"dmX2HVDqSsQ","updated_at":"2021-01-18T07:52:03-05:00","username":"drench777","name":"Dylan
+        LaPierre","first_name":"Dylan","last_name":"LaPierre","twitter_username":null,"portfolio_url":null,"bio":null,"location":"Chicago
+        ","links":{"self":"https://api.unsplash.com/users/drench777","html":"https://unsplash.com/@drench777","photos":"https://api.unsplash.com/users/drench777/photos","likes":"https://api.unsplash.com/users/drench777/likes","portfolio":"https://api.unsplash.com/users/drench777/portfolio","following":"https://api.unsplash.com/users/drench777/following","followers":"https://api.unsplash.com/users/drench777/followers"},"profile_image":{"small":"https://images.unsplash.com/profile-1602276888280-5bdf9bc71daeimage?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=32\u0026w=32","medium":"https://images.unsplash.com/profile-1602276888280-5bdf9bc71daeimage?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=64\u0026w=64","large":"https://images.unsplash.com/profile-1602276888280-5bdf9bc71daeimage?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=128\u0026w=128"},"instagram_username":null,"total_collections":0,"total_likes":129,"total_photos":51,"accepted_tos":true},"tags":[{"type":"landing_page","title":"city","source":{"ancestry":{"type":{"slug":"wallpapers","pretty_slug":"HD
+        Wallpapers"},"category":{"slug":"travel","pretty_slug":"Travel"},"subcategory":{"slug":"city","pretty_slug":"City"}},"title":"HD
+        City Wallpapers","subtitle":"Download Free City Wallpapers","description":"Choose
+        from a curated selection of city wallpapers for your mobile and desktop screens.
+        Always free on Unsplash.","meta_title":"City Wallpapers: Free HD Download
+        [500+ HQ] | Unsplash","meta_description":"Choose from hundreds of free city
+        wallpapers. Download HD wallpapers for free on Unsplash.","cover_photo":{"id":"Nyvq2juw4_o","created_at":"2016-10-31T20:26:28-04:00","updated_at":"2021-01-04T10:01:14-05:00","promoted_at":"2016-10-31T20:26:28-04:00","width":3465,"height":2131,"color":"#0c2640","blur_hash":"LhEMa,W=WVWW_4kBjtW=?bkBaefR","description":"City
+        architecture and skyscrapers near waterfront","alt_description":"white and
+        brown city buildings during daytime","urls":{"raw":"https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1","full":"https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1\u0026q=85\u0026fm=jpg\u0026crop=entropy\u0026cs=srgb","regular":"https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=entropy\u0026cs=tinysrgb\u0026w=1080\u0026fit=max","small":"https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=entropy\u0026cs=tinysrgb\u0026w=400\u0026fit=max","thumb":"https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=entropy\u0026cs=tinysrgb\u0026w=200\u0026fit=max"},"links":{"self":"https://api.unsplash.com/photos/Nyvq2juw4_o","html":"https://unsplash.com/photos/Nyvq2juw4_o","download":"https://unsplash.com/photos/Nyvq2juw4_o/download","download_location":"https://api.unsplash.com/photos/Nyvq2juw4_o/download"},"categories":[],"likes":2016,"liked_by_user":false,"current_user_collections":[],"sponsorship":null,"user":{"id":"1--L3vNK0TA","updated_at":"2021-01-04T21:28:23-05:00","username":"peterlaster","name":"Pedro
+        Lastra","first_name":"Pedro","last_name":"Lastra","twitter_username":null,"portfolio_url":"https://www.flickr.com/photos/lastingimages/","bio":null,"location":null,"links":{"self":"https://api.unsplash.com/users/peterlaster","html":"https://unsplash.com/@peterlaster","photos":"https://api.unsplash.com/users/peterlaster/photos","likes":"https://api.unsplash.com/users/peterlaster/likes","portfolio":"https://api.unsplash.com/users/peterlaster/portfolio","following":"https://api.unsplash.com/users/peterlaster/following","followers":"https://api.unsplash.com/users/peterlaster/followers"},"profile_image":{"small":"https://images.unsplash.com/placeholder-avatars/extra-large.jpg?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=32\u0026w=32","medium":"https://images.unsplash.com/placeholder-avatars/extra-large.jpg?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=64\u0026w=64","large":"https://images.unsplash.com/placeholder-avatars/extra-large.jpg?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=128\u0026w=128"},"instagram_username":null,"total_collections":10,"total_likes":47,"total_photos":86,"accepted_tos":false}}}},{"type":"search","title":"town"},{"type":"search","title":"urban"}]}]}'
+  recorded_at: Mon, 18 Jan 2021 16:52:15 GMT
+recorded_with: VCR 6.0.0
