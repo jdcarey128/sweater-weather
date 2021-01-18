@@ -12,6 +12,10 @@ module Api
         @hourly_weather = format_hourly(forecast_data[:hourly])
       end
 
+      def wind_dir(wind)
+        "#{dir[(((wind % 360) / 22.5).round(0))]}"
+      end
+
       private 
 
       def format_current(current_data)
@@ -49,7 +53,7 @@ module Api
             time: to_time(hour[:dt]).strftime('%T'),
             temperature: hour[:temp],
             wind_speed: "#{hour[:wind_speed]} mph",
-            wind_direction: "from #{dir[wind_dir(hour[:wind_deg])]}",
+            wind_direction: wind_dir(hour[:wind_deg]),
             conditions: hour[:weather][0][:description], 
             icon: hour[:weather][0][:icon]
           }
@@ -58,12 +62,8 @@ module Api
 
       def to_time(num)
         Time.at(num)
-      end
-
-      def wind_dir(wind)
-        ((wind % 360) / 22.5).round(0)
-      end
-
+      end    
+   
       def dir 
         return [
           'N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 
