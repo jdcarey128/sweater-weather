@@ -6,7 +6,6 @@ RSpec.describe Api::V1::BackgroundImageService do
       location = 'chicago,il'
       result = Api::V1::BackgroundImageService.get_image(location)
 
-      result = result[0]
       urls = result[:urls]
       user = result[:user]
 

@@ -4,6 +4,7 @@ module Api
       
       def show 
         result = BackgroundImageFacade.get_image(params[:location])
+        # require 'pry'; binding.pry
         return render_error(result) if result.is_a?(Hash)
         image = OpenStruct.new(id: nil, 
                                image: result)

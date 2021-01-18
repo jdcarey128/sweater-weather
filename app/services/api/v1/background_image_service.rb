@@ -9,7 +9,7 @@ module Api
           req.params['per_page'] = 1
         end
         result = parse_json(resp.body)
-        return result[:results] unless result[:results].empty?
+        return result[:results][0] unless result[:results].empty?
         {:error => 400, :message => "No results found for \'#{location}\'"}
       end
 
