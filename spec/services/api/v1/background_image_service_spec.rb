@@ -6,10 +6,7 @@ RSpec.describe Api::V1::BackgroundImageService do
       location = 'chicago,il'
       result = Api::V1::BackgroundImageService.get_image(location)
 
-      expect(result).to have_key(:results)
-      expect(result[:results]).to be_a(Array)
-
-      result = result[:results][0]
+      result = result[0]
       urls = result[:urls]
       user = result[:user]
 
@@ -28,6 +25,24 @@ RSpec.describe Api::V1::BackgroundImageService do
       expect(user).to have_key(:links)
       expect(user[:links]).to be_a(Hash)
       expect(user[:links][:html]).to include('https://unsplash.com')
+    end
+  end
+
+  describe 'error handling' do 
+    it 'returns an error message for an empty entry', :vcr do 
+      location = '' 
+      result = Api::V1::BackgroundImageService.get_image(location)
+
+      expect(result[:error]).to eq 400
+      expect(result[:message]).to eq("No results found for \'#{location}\'")
+    end
+
+    it 'returns an error message for an invalid entry', :vcr do 
+      location = 'qoena;osi' 
+      result = Api::V1::BackgroundImageService.get_image(location)
+
+      expect(result[:error]).to eq 400
+      expect(result[:message]).to eq("No results found for \'#{location}\'")
     end
   end
 end
