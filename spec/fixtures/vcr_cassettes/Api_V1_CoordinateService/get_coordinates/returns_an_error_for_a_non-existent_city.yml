@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.mapquestapi.com/geocoding/v1/address?key=<MAPQUEST_KEY>&location=%23@*%23%25%26&maxResults=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 17 Jan 2021 21:49:47 GMT
+      Content-Length:
+      - '0'
+      Server:
+      - Apache-Coyote/1.1
+      Set-Cookie:
+      - JSESSIONID=BDEEA0861B5293171F3BE1B4CB0A18F3; Path=/; HttpOnly
+      Status:
+      - success
+      Transactionweight:
+      - NaN
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Sun, 17 Jan 2021 21:49:47 GMT
+recorded_with: VCR 6.0.0

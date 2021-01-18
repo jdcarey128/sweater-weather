@@ -1,0 +1,9 @@
+{
+  "datetime": { "type" : "string", "format": "date-time" },
+  "sunrise" : { "type" : "string", "format": "date-time" },
+  "sunset" : { "type" : "string", "format": "date-time" },
+  "max_temp" : { "type" : "float" },
+  "min_temp" : { "type" : "float" },
+  "conditions" : { "type" : "string" },
+  "icon" : { "type" : "string" }
+}
