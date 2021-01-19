@@ -9,14 +9,6 @@ module Api
         Forecast.new(forecast) 
       end
 
-      def self.destination_forecast(travel_params)
-        travel_info = CoordinateService.get_travel_info(travel_params)
-        travel = Travel.new(travel_info)
-        forecast_info = ForecastService.get_forecast(travel.destination_coords)
-        forecast = Forecast.new(forecast_info)
-        return travel, forecast 
-      end
-
       private 
       def self.format_error(error)
         {:error => error[:cod].to_i, :message => error[:message]}

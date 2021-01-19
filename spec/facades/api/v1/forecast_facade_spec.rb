@@ -81,34 +81,4 @@ RSpec.describe Api::V1::ForecastFacade do
       expect(result[:message]).to eq('wrong latitude')
     end
   end
-
-  describe 'Forecast destination forecast' do 
-    it 'returns a destination forecast object' do 
-      travel_params = {
-        start: 'Denver,Co',
-        destination: 'Boulder,CO' 
-      }
-      json = File.read('spec/fixtures/get_travel_info.json')
-      travel_info = JSON.parse(json, symbolize_names: true)
-      json_forecast = File.read('spec/fixtures/get_forecast.json')
-      forecast_info = JSON.parse(json_forecast, symbolize_names: true)
-      coords = {:lng=>-105.279266, :lat=>40.015831}
-
-      allow(Api::V1::CoordinateService).to receive(:get_travel_info).with(travel_params).and_return(travel_info)
-      allow(Api::V1::ForecastService).to receive(:get_forecast).with(coords).and_return(forecast_info)
-
-      result = Api::V1::ForecastFacade.destination_forecast(travel_params)
-      first = result[0]
-      second = result[1]
-
-      expect(result).to be_a(Array)
-      expect(first).to be_a(Api::V1::Travel)
-      expect(second).to be_a(Api::V1::Forecast)
-      expect(first.travel_time).to be_a(String)
-      expect(first.destination_city).to be_a(String)
-      expect(second.current_weather).to be_a(Hash)
-      expect(second.current_weather[:conditions]).to be_a(String)
-      expect(second.current_weather[:temperature]).to be_a(Float)
-    end
-  end
 end

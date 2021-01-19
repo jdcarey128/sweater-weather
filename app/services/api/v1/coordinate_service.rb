@@ -15,7 +15,7 @@ module Api
 
       def self.get_travel_info(travel_params)
         resp = travel_conn.get('route') do |req|
-          req.params['from'] = "#{travel_params[:start]}"
+          req.params['from'] = "#{travel_params[:origin]}"
           req.params['to'] = "#{travel_params[:destination]}"
         end
         parse_json(resp.body)[:route]
