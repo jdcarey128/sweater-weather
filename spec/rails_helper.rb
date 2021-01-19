@@ -89,8 +89,8 @@ VCR.configure do |config|
 end
 
 # Methods to help clean up tests
-def parse_json
-  JSON.parse(response.body, symbolize_names: true)
+def parse_json(file = response.body)
+  JSON.parse(file, symbolize_names: true)
 end
 
 def define_body(email, pword, pword_conf = nil)
