@@ -86,7 +86,7 @@ RSpec.describe Api::V1::ForecastFacade do
     it 'returns a destination forecast object' do 
       travel_params = {
         start: 'Denver,Co',
-        end: 'Boulder,CO' 
+        destination: 'Boulder,CO' 
       }
       result = Api::V1::ForecastFacade.destination_forecast(travel_params)
 

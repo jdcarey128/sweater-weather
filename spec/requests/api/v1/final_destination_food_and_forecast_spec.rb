@@ -9,7 +9,7 @@ RSpec.describe 'Destination Food and Forecast' do
       destination = 'Boulder,Co'
       food = 'cheese burger'
   
-      get "/api/v1/munchies?start=#{origin}&end=#{destination}&food=#{food}", headers: defined_headers
+      get "/api/v1/munchies?start=#{origin}&destination=#{destination}&food=#{food}", headers: defined_headers
   
       expect(response.status).to eq 200
       response_body = parse_json[:data]
