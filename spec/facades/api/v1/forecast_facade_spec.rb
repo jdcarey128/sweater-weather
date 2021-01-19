@@ -104,12 +104,11 @@ RSpec.describe Api::V1::ForecastFacade do
       expect(result).to be_a(Array)
       expect(first).to be_a(Api::V1::Travel)
       expect(second).to be_a(Api::V1::Forecast)
-      expec(first.travel_time).to be_a(String)
-      expec(first.destination_city).to be_a(String)
+      expect(first.travel_time).to be_a(String)
+      expect(first.destination_city).to be_a(String)
       expect(second.current_weather).to be_a(Hash)
       expect(second.current_weather[:conditions]).to be_a(String)
       expect(second.current_weather[:temperature]).to be_a(Float)
-
     end
   end
 end

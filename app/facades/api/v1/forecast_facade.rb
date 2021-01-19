@@ -11,9 +11,10 @@ module Api
 
       def self.destination_forecast(travel_params)
         travel_info = CoordinateService.get_travel_info(travel_params)
-        coords = travel_info[:boundingBox][:ul]
-        forecast = ForecastService.get_forecast(coords)
-        Forecast.new(forecast, travel_info)
+        travel = Travel.new(travel_info)
+        forecast_info = ForecastService.get_forecast(travel.destination_coords)
+        forecast = Forecast.new(forecast_info)
+        return travel, forecast 
       end
 
       private 
