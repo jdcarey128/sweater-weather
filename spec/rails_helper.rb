@@ -106,3 +106,11 @@ def defined_headers
     "Accept": "application/json"
   }
 end
+
+def rt_body(origin, dest, api_key)
+  {
+    "origin": origin, 
+    "destination": dest, 
+    "api_key": api_key
+  }
+end
