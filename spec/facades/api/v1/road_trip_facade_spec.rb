@@ -5,7 +5,7 @@ RSpec.describe Api::V1::RoadTripFacade do
     it 'returns a destination forecast object' do 
       # Input travel params 
       travel_params = {
-        start: 'Denver,Co',
+        origin: 'Denver,Co',
         destination: 'Boulder,CO' 
       }
       # Coords for destination (Boulder)

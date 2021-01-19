@@ -44,7 +44,7 @@ RSpec.describe Api::V1::CoordinateService do
   describe 'get travel info' do 
     it 'returns the parsed json for a travel between two cities', :vcr do 
       travel_params = {
-        start: 'Denver,Co',
+        origin: 'Denver,Co',
         destination: 'Boulder,CO' 
       }
       
