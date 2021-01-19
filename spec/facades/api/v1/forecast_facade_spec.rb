@@ -54,7 +54,7 @@ RSpec.describe Api::V1::ForecastFacade do
     end
   end
 
-  describe 'forecast facade errors' do 
+  describe 'forecast facade get_forecast errors' do 
     it 'returns an error message with invalid coordinates' do 
       location = 'error,city'
       error = {:error => 400, :message => "Unknown Location: #{location}"}
@@ -79,6 +79,21 @@ RSpec.describe Api::V1::ForecastFacade do
       expect(result).to be_a(Hash)
       expect(result[:error]).to eq(400)
       expect(result[:message]).to eq('wrong latitude')
+    end
+  end
+
+  describe 'Forecast destination forecast' do 
+    it 'returns a destination forecast object' do 
+      travel_params = {
+        start: 'Denver,Co',
+        end: 'Boulder,CO' 
+      }
+      result = Api::V1::ForecastFacade.destination_forecast(travel_params)
+
+      expect(result).to be_a(Api::V1::DestinationForecast)
+      expect(result.travel_time).to be_a(String)
+      expect(result.forecast_summary).to be_a(String)
+      expect(result.forecast_temperature).to be_a(String)
     end
   end
 end
