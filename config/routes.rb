@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get '/backgrounds', to: 'background_image#show'
       resources :users, only: [:create]
       resources :sessions, only: [:create]
+      get '/munchies', to: 'munchies#show'
     end
   end
 end
