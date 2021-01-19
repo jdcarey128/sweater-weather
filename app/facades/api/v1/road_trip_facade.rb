@@ -8,7 +8,7 @@ module Api
         road_trip = RoadTrip.new(travel_info)
         forecast_info = ForecastService.get_forecast(road_trip.destination_coords)
         # Return error for invalid forecast 
-        forecast = Forecast.new(forecast_info)
+        forecast = Forecast.new(forecast_info, road_trip.travel_time)
         return road_trip, forecast 
       end 
       
