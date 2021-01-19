@@ -26,5 +26,59 @@
     "realTime": 2336,
     "hasSeasonalClosure": false,
     "hasCountryCross": false,
-    "fuelUsed": 1.4
+    "fuelUsed": 1.4, 
+    "locations": [
+        {
+            "dragPoint": false,
+            "displayLatLng": {
+                "lng": -104.984856,
+                "lat": 39.738453
+            },
+            "adminArea4": "Denver County",
+            "adminArea5": "Denver",
+            "postalCode": "",
+            "adminArea1": "US",
+            "adminArea3": "CO",
+            "type": "s",
+            "sideOfStreet": "N",
+            "geocodeQualityCode": "A5XAX",
+            "adminArea4Type": "County",
+            "linkId": 40287819,
+            "street": "",
+            "adminArea5Type": "City",
+            "geocodeQuality": "CITY",
+            "adminArea1Type": "Country",
+            "adminArea3Type": "State",
+            "latLng": {
+                "lng": -104.984853,
+                "lat": 39.738453
+            }
+        },
+        {
+            "dragPoint": false,
+            "displayLatLng": {
+                "lng": -105.279266,
+                "lat": 40.015831
+            },
+            "adminArea4": "Boulder County",
+            "adminArea5": "Boulder",
+            "postalCode": "",
+            "adminArea1": "US",
+            "adminArea3": "CO",
+            "type": "s",
+            "sideOfStreet": "N",
+            "geocodeQualityCode": "A5XAX",
+            "adminArea4Type": "County",
+            "linkId": 28629206,
+            "street": "",
+            "adminArea5Type": "City",
+            "geocodeQuality": "CITY",
+            "adminArea1Type": "Country",
+            "adminArea3Type": "State",
+            "latLng": {
+                "lng": -105.27927,
+                "lat": 40.015831
+            }
+        }
+    ]
 }
