@@ -88,6 +88,15 @@ RSpec.describe Api::V1::ForecastFacade do
         start: 'Denver,Co',
         destination: 'Boulder,CO' 
       }
+      json = File.read('spec/fixtures/get_travel_info.json')
+      travel_info = JSON.parse(json, symbolize_names: true)
+      json_forecast = File.read('spec/fixtures/get_forecast.json')
+      forecast_info = JSON.parse(json_forecast, symbolize_names: true)
+      coords = {:lng=>-105.279266, :lat=>40.015831}
+
+      allow(Api::V1::CoordinateService).to receive(:get_travel_info).with(travel_params).and_return(travel_info)
+      allow(Api::V1::ForecastService).to receive(:get_forecast).with(coords).and_return(forecast_info)
+
       result = Api::V1::ForecastFacade.destination_forecast(travel_params)
 
       expect(result).to be_a(Api::V1::DestinationForecast)

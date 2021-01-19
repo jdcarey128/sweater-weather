@@ -1,0 +1,30 @@
+{
+    "hasTollRoad": false,
+    "hasBridge": true,
+    "boundingBox": {
+        "lr": {
+            "lng": -104.982323,
+            "lat": 39.738453
+        },
+        "ul": {
+            "lng": -105.279266,
+            "lat": 40.015831
+        }
+    },
+    "distance": 30.099,
+    "hasTimedRestriction": false,
+    "hasTunnel": false,
+    "hasHighway": true,
+    "computedWaypoints": [],
+    "routeError": {
+        "errorCode": -400,
+        "message": ""
+    },
+    "formattedTime": "00:35:23",
+    "sessionId": "60070d03-0128-5f21-02b4-3305-0612945562af",
+    "hasAccessRestriction": false,
+    "realTime": 2336,
+    "hasSeasonalClosure": false,
+    "hasCountryCross": false,
+    "fuelUsed": 1.4
+}
