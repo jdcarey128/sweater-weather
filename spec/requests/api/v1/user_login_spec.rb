@@ -120,5 +120,37 @@ RSpec.describe 'User Login' do
       response_body = JSON.parse(response.body, symbolize_names: true)
       expect(response_body[:message]).to eq('Email and Password can\'t be blank')
     end
+
+    it 'does not send a body in request' do 
+      headers = { 
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+
+      # Missing body 
+      post '/api/v1/sessions', headers: headers
+
+      expect(response.status).to eq 400
+      response_body = JSON.parse(response.body, symbolize_names: true)
+      expect(response_body[:message]).to eq('Missing Email and Password in request body')
+
+      # Missing password in body 
+      body = {
+        "email": @user.email
+      }
+      post '/api/v1/sessions', headers: headers, params: body.to_json 
+      expect(response.status).to eq 400
+      response_body = JSON.parse(response.body, symbolize_names: true)
+      expect(response_body[:message]).to eq('Missing Password in request body')
+
+      # Missing email in body 
+      body = {
+        "password": @user.password
+      }
+      post '/api/v1/sessions', headers: headers, params: body.to_json
+      expect(response.status).to eq 400
+      response_body = JSON.parse(response.body, symbolize_names: true)
+      expect(response_body[:message]).to eq('Missing Email in request body')
+    end
   end
 end

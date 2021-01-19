@@ -17,7 +17,14 @@ module Api
       private 
       
       def check_params 
-        if params[:email].empty? && params[:password].empty?
+
+        if params[:email].nil? && params[:password].nil?
+          return render_error('Missing Email and Password in request body')
+        elsif params[:email].nil?
+          return render_error('Missing Email in request body')
+        elsif params[:password].nil?
+          return render_error('Missing Password in request body')
+        elsif params[:email].empty? && params[:password].empty?
           return render_error('Email and Password can\'t be blank')
         elsif params[:email].empty?
           return render_error('Email can\'t be blank')
