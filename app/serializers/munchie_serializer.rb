@@ -1,11 +1,11 @@
-class DestinationSerializer
+class MunchieSerializer
   include FastJsonapi::ObjectSerializer
   set_type :munchie 
 
   attribute :forecast do |obj|
     {
       "summary": obj.forecast.current_weather[:conditions],
-      "temperature": obj.forecast.current_weather[:temperature]
+      "temperature": obj.forecast.current_weather[:temperature].to_s
     }
   end
 

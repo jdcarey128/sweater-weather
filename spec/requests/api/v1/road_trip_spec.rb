@@ -4,7 +4,7 @@ RSpec.describe 'User Road Trip' do
   # See rails helper for defined_headers, parse_json, rt_body(*)
   
   describe 'with valid api_key and locations' do 
-    it 'responds with the travel time and weather at eta' do 
+    xit 'responds with the travel time and weather at eta' do 
       user = create(:user)
       origin = 'Denver,CO'
       destination = 'Pueblo,CO'
@@ -17,7 +17,7 @@ RSpec.describe 'User Road Trip' do
       response_body = parse_json[:data] 
       attributes = response_body[:attributes]
       weather = attributes[:weather_at_eta]
-      
+
       expect(response_body[:id]).to eq(nil)
       expect(response_body[:type]).to eq('roadtrip')
       expect(attributes).to be_a(Hash)

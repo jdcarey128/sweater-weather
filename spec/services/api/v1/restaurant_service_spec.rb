@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::RestaurantService do 
   describe 'with valid food search' do 
-    it 'responds with parsed restaurant info' do 
+    it 'responds with parsed restaurant info', :vcr do 
       food = 'cheese burger' 
       coords = {:lng=>-105.279266, :lat=>40.015831}
 

@@ -12,7 +12,7 @@ module Api
       end
 
       def format_dest(dest)
-        "#{dest[:adminArea5]}, #{dest[:adminArea3]}"
+        "#{dest[:adminArea5]},#{dest[:adminArea3]}"
       end
     end
   end

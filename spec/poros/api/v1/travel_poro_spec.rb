@@ -8,7 +8,7 @@ RSpec.describe Api::V1::Travel do
     travel = Api::V1::Travel.new(travel_info)
 
     expect(travel).to be_a(Api::V1::Travel)
-    expect(travel.destination_city).to eq('Boulder, CO')
+    expect(travel.destination_city).to eq('Boulder,CO')
     expect(travel.destination_coords).to eq({lng: -105.279266, lat: 40.015831})
     expect(travel.travel_time).to eq("00:35:23")
   end

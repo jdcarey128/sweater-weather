@@ -3,14 +3,19 @@ module Api
     class MunchiesController < ApplicationController
 
       def show 
-        forecast = ForecastFacade.destination_forecast(travel_params)
-        restaurant = MunchiesFacade.find_restaurant(params[:food])
+        travel, forecast = ForecastFacade.destination_forecast(travel_params)
+        restaurant = RestaurantFacade.find_restaurant(params[:food], travel.destination_coords)
+        destination = OpenStruct.new(id: nil, 
+                                     travel: travel, 
+                                     forecast: forecast,
+                                     restaurant: restaurant)
+        render json: MunchieSerializer.new(destination)
       end
 
       private 
 
       def travel_params 
-        params.permit(:start, :end)
+        params.permit(:start, :destination)
       end
     end
   end
