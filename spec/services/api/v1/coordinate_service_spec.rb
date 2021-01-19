@@ -42,13 +42,14 @@ RSpec.describe Api::V1::CoordinateService do
   end
 
   describe 'get travel info' do 
-    it 'returns the parsed json for a travel between two cities' do 
+    it 'returns the parsed json for a travel between two cities', :vcr do 
       travel_params = {
         start: 'Denver,Co',
         destination: 'Boulder,CO' 
       }
       
       result = Api::V1::CoordinateService.get_travel_info(travel_params)
+      
       dest_coords = result[:boundingBox][:ul]
 
       expect(result).to be_a(Hash)
