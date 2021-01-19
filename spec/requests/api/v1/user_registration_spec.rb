@@ -3,10 +3,6 @@ require 'rails_helper'
 RSpec.describe 'User Registration' do
   
   describe 'with valid and unique credentials' do 
-    before :each do 
-      
-    end
-
     it 'responds with the created user\'s email and unique api_key' do 
       headers = { 
         "Content-Type": "application/json",
@@ -40,7 +36,7 @@ RSpec.describe 'User Registration' do
     end
   end
 
-  describe 'error handling' do 
+  describe 'error handling with invalid credentials' do 
     it 'returns error if email is taken' do 
       user = create(:user)
       headers = { 
@@ -121,5 +117,51 @@ RSpec.describe 'User Registration' do
       expect(response_body[:error]).to eq 400
       expect(response_body[:message]).to eq('Email can\'t be blank')
     end
+
+    it 'returns an error if the request body is missing' do 
+      headers = { 
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+      email = 'whatever@example.com'
+      password = 'password'
+
+      # Missing body 
+      post '/api/v1/users', headers: headers
+      expect(response.status).to eq 400
+      response_body = parse_json
+      expect(response_body[:message]).to eq('Missing Email, Password, Password Confirmation in request body')
+      
+      # Missing email in body 
+      body = {
+        "password": password, 
+        "password_confirmation": password
+      }
+      post '/api/v1/users', headers: headers, params: body.to_json 
+      response_body = parse_json
+      expect(response_body[:message]).to eq('Missing Email in request body')
+
+      # Missing password in body 
+      body = {
+        "email": email, 
+        "password_confirmation": password
+      }
+      post '/api/v1/users', headers: headers, params: body.to_json 
+      response_body = parse_json
+      expect(response_body[:message]).to eq('Missing Password in request body')
+
+      # Missing password confirmation in body 
+      body = {  
+        "email": email,
+        "password": password 
+      }
+      post '/api/v1/users', headers: headers, params: body.to_json 
+      response_body = parse_json
+      expect(response_body[:message]).to eq('Missing Password Confirmation in request body')
+    end
+  end
+  
+  def parse_json
+    JSON.parse(response.body, symbolize_names: true)
   end
 end

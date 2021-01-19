@@ -17,7 +17,6 @@ module Api
       private 
       
       def check_params 
-
         if params[:email].nil? && params[:password].nil?
           return render_error('Missing Email and Password in request body')
         elsif params[:email].nil?
