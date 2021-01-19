@@ -8,6 +8,6 @@ RSpec.describe Api::V1::Restaurant do
 
     expect(result).to be_a(Api::V1::Restaurant)
     expect(result.name).to eq('Snarfburger')
-    expect(result.address).to eq("2000 Arapahoe Ave","Boulder, CO 80302")
+    expect(result.address).to eq("2000 Arapahoe Ave Boulder, CO 80302")
   end
 end
