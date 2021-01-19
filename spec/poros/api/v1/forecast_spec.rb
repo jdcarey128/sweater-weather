@@ -1,15 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Forecast do 
-  it 'exists and has attributes' do 
+  before :each do 
     json = File.read('spec/fixtures/get_forecast.json')
-    forecast = JSON.parse(json, symbolize_names: true)
+    @forecast = parse_json(json)
+    @result = Api::V1::Forecast.new(@forecast) 
+  end
 
-    result = Api::V1::Forecast.new(forecast) 
-    current = result.current_weather
-    daily = result.daily_weather
-    hourly = result.hourly_weather 
-    expect(result).to be_a(Api::V1::Forecast)
+  it 'exists and has attributes' do 
+    current = @result.current_weather
+    daily = @result.daily_weather
+    hourly = @result.hourly_weather 
+    expect(@result).to be_a(Api::V1::Forecast)
 
     # Check current weather 
     expect(current).to be_a(Hash)
@@ -49,25 +51,44 @@ RSpec.describe Api::V1::Forecast do
   end
 
   it 'can convert wind_degree to direction' do 
-    json = File.read('spec/fixtures/get_forecast.json')
-    forecast = JSON.parse(json, symbolize_names: true)
-    result = Api::V1::Forecast.new(forecast)
-    expect(result.wind_dir(360)).to eq('N')
-    expect(result.wind_dir(10)).to eq('N')
-    expect(result.wind_dir(20)).to eq('NNE')
-    expect(result.wind_dir(50)).to eq('NE')
-    expect(result.wind_dir(70)).to eq('ENE')
-    expect(result.wind_dir(80)).to eq('E')
-    expect(result.wind_dir(110)).to eq('ESE')
-    expect(result.wind_dir(130)).to eq('SE')
-    expect(result.wind_dir(160)).to eq('SSE')
-    expect(result.wind_dir(170)).to eq('S')
-    expect(result.wind_dir(210)).to eq('SSW')
-    expect(result.wind_dir(230)).to eq('SW')
-    expect(result.wind_dir(250)).to eq('WSW')
-    expect(result.wind_dir(260)).to eq('W')
-    expect(result.wind_dir(290)).to eq('WNW')
-    expect(result.wind_dir(320)).to eq('NW')
-    expect(result.wind_dir(340)).to eq('NNW')
+    expect(@result.wind_dir(360)).to eq('N')
+    expect(@result.wind_dir(10)).to eq('N')
+    expect(@result.wind_dir(20)).to eq('NNE')
+    expect(@result.wind_dir(50)).to eq('NE')
+    expect(@result.wind_dir(70)).to eq('ENE')
+    expect(@result.wind_dir(80)).to eq('E')
+    expect(@result.wind_dir(110)).to eq('ESE')
+    expect(@result.wind_dir(130)).to eq('SE')
+    expect(@result.wind_dir(160)).to eq('SSE')
+    expect(@result.wind_dir(170)).to eq('S')
+    expect(@result.wind_dir(210)).to eq('SSW')
+    expect(@result.wind_dir(230)).to eq('SW')
+    expect(@result.wind_dir(250)).to eq('WSW')
+    expect(@result.wind_dir(260)).to eq('W')
+    expect(@result.wind_dir(290)).to eq('WNW')
+    expect(@result.wind_dir(320)).to eq('NW')
+    expect(@result.wind_dir(340)).to eq('NNW')
   end
-end
+
+  describe 'with eta input' do 
+    it 'can display the weather at eta' do 
+      json_dest = File.read('spec/fixtures/get_destination_forecast.json')
+      dest_forecast = parse_json(json_dest)
+      
+      eta = "01:40:00"
+      result = Api::V1::Forecast.new(dest_forecast, eta)
+      expect(result.weather_at_eta[:temperature]).to eq(34.25)
+      expect(result.weather_at_eta[:conditions]).to eq('broken clouds')
+
+      eta = '2:40:00'
+      result = Api::V1::Forecast.new(dest_forecast, eta)
+      expect(result.weather_at_eta[:temperature]).to eq(29.39)
+      expect(result.weather_at_eta[:conditions]).to eq('broken clouds')
+
+      eta = '24:00:00'
+      result = Api::V1::Forecast.new(dest_forecast, eta)
+      expect(result.weather_at_eta[:temperature]).to eq(51.4)
+      expect(result.weather_at_eta[:conditions]).to eq('clear sky')
+    end
+  end
+end 

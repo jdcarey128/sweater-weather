@@ -4,12 +4,13 @@ module Api
       attr_reader :current_weather, 
                   :hourly_weather, 
                   :daily_weather,
-                  :dir
+                  :weather_at_eta 
                   
-      def initialize(forecast_data)
+      def initialize(forecast_data, time_to_eta = nil)
         @current_weather = format_current(forecast_data[:current])
         @daily_weather = format_daily(forecast_data[:daily])
         @hourly_weather = format_hourly(forecast_data[:hourly])
+        @weather_at_eta = eta_weather(forecast_data, time_to_eta) unless time_to_eta.nil? 
       end
 
       def wind_dir(wind)
@@ -17,6 +18,41 @@ module Api
       end
 
       private 
+
+      def eta_weather(forecast, time_to_eta)
+        hours, minutes, seconds = parse_time(time_to_eta)
+        lapse = lapsed_time(forecast[:current][:dt], hours, minutes)
+        forecast_hours = select_forecast_hours(forecast, lapse)
+
+        if hours < 24 
+          dest_forecast = forecast_hours[0]
+        else 
+          dest_forecast = forecast_hours[1]          
+        end
+
+        return {
+          temperature: dest_forecast[:temp], 
+          conditions: dest_forecast[:weather][0][:description]
+        }
+      end
+
+      def parse_time(time)
+        time.split(':').map { |time| time.to_i }
+      end
+
+      def lapsed_time(now, hours, minutes)
+        now + (minutes * 60) + (hours * 3600)
+      end
+
+      def select_forecast_hours(forecast, lapse)
+        forecast[:hourly].select do |hour|
+          grab_hour(hour[:dt]) == grab_hour(lapse)
+        end
+      end
+
+      def grab_hour(time)
+        to_time(time).strftime('%H')
+      end
 
       def format_current(current_data)
         return {
