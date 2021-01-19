@@ -98,11 +98,18 @@ RSpec.describe Api::V1::ForecastFacade do
       allow(Api::V1::ForecastService).to receive(:get_forecast).with(coords).and_return(forecast_info)
 
       result = Api::V1::ForecastFacade.destination_forecast(travel_params)
+      first = result[0]
+      second = result[1]
 
-      expect(result).to be_a(Api::V1::DestinationForecast)
-      expect(result.travel_time).to be_a(String)
-      expect(result.forecast_summary).to be_a(String)
-      expect(result.forecast_temperature).to be_a(String)
+      expect(result).to be_a(Array)
+      expect(first).to be_a(Api::V1::Travel)
+      expect(second).to be_a(Api::V1::Forecast)
+      expec(first.travel_time).to be_a(String)
+      expec(first.destination_city).to be_a(String)
+      expect(second.current_weather).to be_a(Hash)
+      expect(second.current_weather[:conditions]).to be_a(String)
+      expect(second.current_weather[:temperature]).to be_a(Float)
+
     end
   end
 end
