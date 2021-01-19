@@ -86,3 +86,23 @@ VCR.configure do |config|
   config.filter_sensitive_data('<UNSPLASH_KEY>') { ENV['UNSPLASH_KEY'] }
   config.default_cassette_options = { re_record_interval: 30.days }
 end
+
+# Methods to help clean up tests
+def parse_json
+  JSON.parse(response.body, symbolize_names: true)
+end
+
+def define_body(email, pword, pword_conf = nil)
+  {
+  "email": email,
+  "password": pword,
+  "password_confirmation": pword_conf
+}
+end
+
+def defined_headers
+  { 
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  }
+end

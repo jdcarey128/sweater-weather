@@ -1,24 +1,18 @@
 require 'rails_helper' 
 
 RSpec.describe 'User Login' do 
+  # See rails helper for defined_headers, parse_json, and define_body(*)
+
   describe 'with valid credentials' do 
     it 'user can log in' do 
       user = create(:user)
-      
-      headers = { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
+      body = define_body(user.email, user.password)
 
-      body = {
-        "email": user.email,
-        "password": user.password
-      }
-      post '/api/v1/sessions', headers: headers, params: body.to_json
+      post '/api/v1/sessions', headers: defined_headers, params: body.to_json
 
       expect(response.status).to eq 200
       
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      response_body = parse_json
       
       result = response_body[:data]
       attributes = result[:attributes]
@@ -41,115 +35,80 @@ RSpec.describe 'User Login' do
     it 'a user does not exist in db' do 
       user_2 = build(:user)
 
-      headers = { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-
-      body = {
-        "email": user_2.email,
-        "password": user_2.password
-      }
+      body = define_body(user_2.email, user_2.password)
       
-      post '/api/v1/sessions', headers: headers, params: body.to_json
+      post '/api/v1/sessions', headers: defined_headers, params: body.to_json
 
       expect(response.status).to eq 400
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      response_body = parse_json
 
       expect(response_body[:error]).to eq 400
       expect(response_body[:message]).to eq('The email password combination is invalid')
     end
 
     it 'a user\'s password does not match db' do 
-      headers = { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-
-      body = {
-        "email": @user.email,
-        "password": 'password2'
-      }
+      body = define_body(@user.email, 'password2')
       
-      post '/api/v1/sessions', headers: headers, params: body.to_json
+      post '/api/v1/sessions', headers: defined_headers, params: body.to_json
 
       expect(response.status).to eq 400
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      response_body = parse_json
 
       expect(response_body[:error]).to eq 400
       expect(response_body[:message]).to eq('The email password combination is invalid')
     end
 
     it 'there is one or more missing fields' do 
-      headers = { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-
-      body = {
-        "email": '',
-        "password": @user.password
-      }
+      body = define_body('', @user.password)
       
       # Missing email
-      post '/api/v1/sessions', headers: headers, params: body.to_json
+      post '/api/v1/sessions', headers: defined_headers, params: body.to_json
 
       expect(response.status).to eq 400
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      response_body = parse_json
       expect(response_body[:message]).to eq('Email can\'t be blank')
 
       # Missing password
-      body = {
-        "email": @user.email,
-        "password": ''
-      }
-      post '/api/v1/sessions', headers: headers, params: body.to_json
+      body = define_body(@user.email, '')
+
+      post '/api/v1/sessions', headers: defined_headers, params: body.to_json
 
       expect(response_body[:error]).to eq 400
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      response_body = parse_json
       expect(response_body[:message]).to eq('Password can\'t be blank')
 
       # Missing email and password 
-      body = {
-        "email": '',
-        "password": ''
-      }
-      post '/api/v1/sessions', headers: headers, params: body.to_json
+      body = define_body('', '')
+
+      post '/api/v1/sessions', headers: defined_headers, params: body.to_json
 
       expect(response_body[:error]).to eq 400
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      response_body = parse_json
       expect(response_body[:message]).to eq('Email and Password can\'t be blank')
     end
 
     it 'does not send a body in request' do 
-      headers = { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-
       # Missing body 
-      post '/api/v1/sessions', headers: headers
+      post '/api/v1/sessions', headers: defined_headers
 
       expect(response.status).to eq 400
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      response_body = parse_json
       expect(response_body[:message]).to eq('Missing Email and Password in request body')
 
       # Missing password in body 
-      body = {
-        "email": @user.email
-      }
-      post '/api/v1/sessions', headers: headers, params: body.to_json 
+      body = define_body(@user.email, nil)
+
+      post '/api/v1/sessions', headers: defined_headers, params: body.to_json 
       expect(response.status).to eq 400
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      response_body = parse_json
       expect(response_body[:message]).to eq('Missing Password in request body')
 
       # Missing email in body 
-      body = {
-        "password": @user.password
-      }
-      post '/api/v1/sessions', headers: headers, params: body.to_json
+      body = define_body(nil, @user.password)
+      
+      post '/api/v1/sessions', headers: defined_headers, params: body.to_json
       expect(response.status).to eq 400
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      response_body = parse_json
       expect(response_body[:message]).to eq('Missing Email in request body')
     end
   end
