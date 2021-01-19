@@ -4,7 +4,13 @@ RSpec.describe 'Destination Food and Forecast' do
   # See rails helper for defined_headers and parse_json 
   
   describe 'with valid locations and food search' do 
-    it 'responds with the forecast and restaurant for destination' do 
+    it 'responds with the forecast and restaurant for destination', :vcr do 
+      json_forecast = File.read('spec/fixtures/get_forecast.json')
+      forecast_info = JSON.parse(json_forecast, symbolize_names: true)
+      coords = {:lng=>-105.279266, :lat=>40.015831}
+  
+      allow(Api::V1::ForecastService).to receive(:get_forecast).with(coords).and_return(forecast_info)
+      
       origin = 'Denver,Co'
       destination = 'Boulder,Co'
       food = 'cheese burger'
