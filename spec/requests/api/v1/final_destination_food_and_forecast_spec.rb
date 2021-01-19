@@ -41,7 +41,7 @@ RSpec.describe 'Destination Food and Forecast' do
   end
 
   describe 'with invalid locations' do 
-
+    # I did not have time to do sad path testing :(
   end
 
   describe 'with invalid food search' do 
