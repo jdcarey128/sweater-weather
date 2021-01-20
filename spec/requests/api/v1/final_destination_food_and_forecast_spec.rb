@@ -5,15 +5,8 @@ RSpec.describe 'Destination Food and Forecast' do
   
   describe 'with valid locations and food search' do 
     it 'responds with the forecast and restaurant for destination' do 
-      json_forecast = File.read('spec/fixtures/get_forecast.json')
-      forecast_info = parse_json(json_forecast)
-      json_travel = File.read('spec/fixtures/get_travel_info.json')
-      travel_info = parse_json(json_travel)
+      # Params input 
       coords = {:lng=>-105.279266, :lat=>40.015831}
-
-      json_restaurant = File.read('spec/fixtures/get_restaurant_info.json')
-      restaurant = JSON.parse(json_restaurant, symbolize_names: true)
-  
       origin = 'Denver, CO'
       destination = 'Boulder, CO'
       food = 'cheese burger'
@@ -21,12 +14,21 @@ RSpec.describe 'Destination Food and Forecast' do
         origin: origin,
         destination: destination
       }
+
+      # Stubbed responses
+      json_forecast = File.read('spec/fixtures/get_forecast.json')
+      forecast_info = parse_json(json_forecast)
+      json_travel = File.read('spec/fixtures/get_travel_info.json')
+      travel_info = parse_json(json_travel)
+      json_restaurant = File.read('spec/fixtures/get_restaurant_info.json')
+      restaurant = JSON.parse(json_restaurant, symbolize_names: true)
       
       allow_any_instance_of(Api::V1::MunchiesController).to receive(:travel_params).and_return(travel_params)
       allow(Api::V1::CoordinateService).to receive(:get_travel_info).with(travel_params).and_return(travel_info)
       allow(Api::V1::ForecastService).to receive(:get_forecast).with(coords).and_return(forecast_info)
       allow(Api::V1::RestaurantService).to receive(:find_restaurant).with(food, coords).and_return(restaurant)
 
+      # Response 
       get "/api/v1/munchies?start=#{origin}&destination=#{destination}&food=#{food}", headers: defined_headers
   
       expect(response.status).to eq 200
