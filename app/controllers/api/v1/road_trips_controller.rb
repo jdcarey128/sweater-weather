@@ -4,11 +4,8 @@ module Api
 
       def create 
         # Add api_key validation 
-        road_trip, forecast = RoadTripFacade.get_destination_forecast(trip_params)
+        dest_forecast = RoadTripFacade.get_roadtrip_forecast(trip_params)
         # render error if error 
-        dest_forecast = OpenStruct.new(id: nil, 
-                                       road_trip: road_trip,
-                                       forecast: forecast)
         render json: DestinationForecastSerializer.new(dest_forecast)
       end
       
