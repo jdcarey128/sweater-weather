@@ -1,7 +1,7 @@
 module Api 
   module V1 
     class RoadTripsController < ApplicationController 
-      before_action :authenticate_key
+      before_action :authenticate_key, :check_params
 
       def create 
         # Add api_key validation 
@@ -16,6 +16,14 @@ module Api
         user = User.find_by(api_key: params[:api_key])
         message = 'Invalid api key'
         render_error(message) unless user 
+      end
+
+      def check_params
+        errors = [] 
+        errors << 'Origin' if params[:origin].nil?
+        errors << 'Destination' if params[:destination].nil?
+        errors << 'Api Key' if params[:api_key].nil?
+        render_error("Missing #{errors.join(', ')} in request body") unless errors.empty?
       end
 
       def trip_params 
