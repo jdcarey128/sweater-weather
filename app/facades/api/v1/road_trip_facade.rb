@@ -4,6 +4,7 @@ module Api
       
       def self.get_roadtrip_forecast(travel_params)
         road_trip = get_destination_info(travel_params)
+        return impossible_route(travel_params) if road_trip[:routeError]
         forecast = get_destination_forecast(road_trip)
         return OpenStruct.new(id: nil, 
                               road_trip: road_trip,
@@ -12,7 +13,8 @@ module Api
 
       def self.get_destination_info(travel_params)
         travel_info = CoordinateService.get_travel_info(travel_params)
-        RoadTrip.new(travel_info)
+        return travel_info if travel_info[:routeError]
+        road_trip = RoadTrip.new(travel_info)
         #return error 
       end
       
@@ -36,6 +38,16 @@ module Api
         restaurant_info = RestaurantService.find_restaurant(food, coords)
         Restaurant.new(restaurant_info)
       end
+
+      def self.impossible_route(travel_params)
+        OpenStruct.new(id: nil, 
+                      travel_time: 'Impossible route',
+                      start_city: travel_params[:origin],
+                      end_city: travel_params[:destination],
+                      weather_at_eta: ''
+                      )
+      end
+
     end
   end
 end

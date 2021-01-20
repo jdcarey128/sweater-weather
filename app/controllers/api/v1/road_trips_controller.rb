@@ -1,13 +1,16 @@
 module Api 
   module V1 
     class RoadTripsController < ApplicationController 
-      before_action :authenticate_key, :check_params
+      before_action :check_params, :authenticate_key
 
       def create 
         # Add api_key validation 
         dest_forecast = RoadTripFacade.get_roadtrip_forecast(trip_params)
-        # render error if error 
-        render json: DestinationForecastSerializer.new(dest_forecast)
+        if dest_forecast.weather_at_eta.empty? 
+          render json: ImpossibleRouteSerializer.new(dest_forecast)
+        else
+          render json: DestinationForecastSerializer.new(dest_forecast)
+        end 
       end
       
       private 

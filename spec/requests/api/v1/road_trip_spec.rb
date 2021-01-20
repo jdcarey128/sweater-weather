@@ -102,4 +102,30 @@ RSpec.describe 'User Road Trip' do
       expect(response_body[:message]).to eq('Invalid api key')
     end
   end
+
+  describe 'with valid inputs but impossible locations' do 
+    it 'returns response with impossible route and blank weather eta', :vcr do 
+      # Input params 
+      user = create(:user)
+      origin = 'Denver, CO' 
+      destination = 'London, England'
+      travel_params = {
+        origin: origin, 
+        destination: destination
+      }
+      
+      body = rt_body(origin, destination, user.api_key)
+      post '/api/v1/road_trip', headers: defined_headers, params: body.to_json 
+
+      expect(response.status).to eq 200
+      response_body = parse_json 
+      attributes = response_body[:data][:attributes]
+
+      expect(attributes[:start_city]).to eq(origin)
+      expect(attributes[:end_city]).to eq(destination)
+      expect(attributes[:travel_time]).to eq('Impossible route')
+      expect(attributes[:weather_at_eta]).to eq('')
+    end
+    
+  end
 end
