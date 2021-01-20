@@ -40,4 +40,24 @@ RSpec.describe Api::V1::CoordinateService do
       expect(result[:message]).to eq(["Illegal argument from request: Insufficient info for location"])
     end
   end
+
+  describe 'get travel info' do 
+    it 'returns the parsed json for a travel between two cities', :vcr do 
+      travel_params = {
+        origin: 'Denver,Co',
+        destination: 'Boulder,CO' 
+      }
+      
+      result = Api::V1::CoordinateService.get_travel_info(travel_params)
+      
+      dest_coords = result[:boundingBox][:ul]
+
+      expect(result).to be_a(Hash)
+      expect(result[:formattedTime]).to be_a(String)
+      expect(result[:boundingBox]).to be_a(Hash)
+      expect(dest_coords).to be_a(Hash)
+      expect(dest_coords[:lng]).to be_a(Float)
+      expect(dest_coords[:lat]).to be_a(Float)
+    end
+  end
 end

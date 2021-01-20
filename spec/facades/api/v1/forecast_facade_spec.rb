@@ -54,7 +54,7 @@ RSpec.describe Api::V1::ForecastFacade do
     end
   end
 
-  describe 'forecast facade errors' do 
+  describe 'forecast facade get_forecast errors' do 
     it 'returns an error message with invalid coordinates' do 
       location = 'error,city'
       error = {:error => 400, :message => "Unknown Location: #{location}"}

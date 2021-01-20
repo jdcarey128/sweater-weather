@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.yelp.com/v3/businesses/search?categories=restaurants&latitude=40.015831&limit=1&longitude=-105.279266&open_now=true&term=cheese%20burger
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <YELP_KEY>
+      User-Agent:
+      - Faraday v1.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Ratelimit-Dailylimit:
+      - '5000'
+      Ratelimit-Remaining:
+      - '5000'
+      X-Zipkin-Id:
+      - 6ae39ee7cfbc19cf
+      Server:
+      - envoy
+      Ratelimit-Resettime:
+      - '2021-01-21T00:00:00+00:00'
+      X-Routing-Service:
+      - routing-main--uswest2-5b584d59bc-5lrrw; site=public_api_v3
+      X-B3-Sampled:
+      - '0'
+      X-Proxied:
+      - 10-69-166-32-uswest2bprod
+      X-Extlb:
+      - 10-69-166-32-uswest2bprod
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store, private, no-transform
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Wed, 20 Jan 2021 00:57:19 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-den8240-DEN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"businesses": [{"id": "ZtCVIg5moaqmarxpcoTyMw", "alias": "snarfburger-boulder",
+        "name": "Snarfburger", "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/F8YqcdkYBheuvX3YqEUcMQ/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/snarfburger-boulder?adjust_creative=gFVl6Sj2QowCbap6mg3MZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=gFVl6Sj2QowCbap6mg3MZA",
+        "review_count": 163, "categories": [{"alias": "burgers", "title": "Burgers"},
+        {"alias": "hotdogs", "title": "Fast Food"}, {"alias": "tradamerican", "title":
+        "American (Traditional)"}], "rating": 3.5, "coordinates": {"latitude": 40.014478,
+        "longitude": -105.268864}, "transactions": ["delivery"], "price": "$", "location":
+        {"address1": "2000 Arapahoe Ave", "address2": null, "address3": "", "city":
+        "Boulder", "zip_code": "80302", "country": "US", "state": "CO", "display_address":
+        ["2000 Arapahoe Ave", "Boulder, CO 80302"]}, "phone": "+13034447711", "display_phone":
+        "(303) 444-7711", "distance": 898.5319758051841}], "total": 58, "region":
+        {"center": {"longitude": -105.279266, "latitude": 40.015831}}}'
+  recorded_at: Wed, 20 Jan 2021 00:57:20 GMT
+recorded_with: VCR 6.0.0

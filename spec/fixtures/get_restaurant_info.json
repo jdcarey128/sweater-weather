@@ -1,0 +1,48 @@
+{
+  "id": "ZtCVIg5moaqmarxpcoTyMw",
+  "alias": "snarfburger-boulder",
+  "name": "Snarfburger",
+  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/F8YqcdkYBheuvX3YqEUcMQ/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/snarfburger-boulder?adjust_creative=gFVl6Sj2QowCbap6mg3MZA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=gFVl6Sj2QowCbap6mg3MZA",
+  "review_count": 163,
+  "categories": [
+      {
+          "alias": "burgers",
+          "title": "Burgers"
+      },
+      {
+          "alias": "hotdogs",
+          "title": "Fast Food"
+      },
+      {
+          "alias": "tradamerican",
+          "title": "American (Traditional)"
+      }
+  ],
+  "rating": 3.5,
+  "coordinates": {
+      "latitude": 40.014478,
+      "longitude": -105.268864
+  },
+  "transactions": [
+      "delivery"
+  ],
+  "price": "$",
+  "location": {
+      "address1": "2000 Arapahoe Ave",
+      "address2": null,
+      "address3": "",
+      "city": "Boulder",
+      "zip_code": "80302",
+      "country": "US",
+      "state": "CO",
+      "display_address": [
+          "2000 Arapahoe Ave",
+          "Boulder, CO 80302"
+      ]
+  },
+  "phone": "+13034447711",
+  "display_phone": "(303) 444-7711",
+  "distance": 898.5319758051841
+}

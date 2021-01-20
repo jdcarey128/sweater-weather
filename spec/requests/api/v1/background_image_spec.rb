@@ -1,19 +1,17 @@
 require 'rails_helper' 
 
 RSpec.describe 'Background Image' do 
+  # See rails helper for defined_headers and parse_json 
+
   describe 'with a valid location entry' do 
     before :each do
-      headers = { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
       json = File.read('spec/fixtures/get_image.json')
       @image_data = JSON.parse(json, symbolize_names: true)
       @location = 'denver,co'
 
       allow(Api::V1::BackgroundImageService).to receive(:get_image).with(@location).and_return(@image_data)
 
-      get "/api/v1/backgrounds?location=#{@location}", headers: headers
+      get "/api/v1/backgrounds?location=#{@location}", headers: defined_headers
 
       expect(response.status).to eq 200
       @response = JSON.parse(response.body)
@@ -45,20 +43,15 @@ RSpec.describe 'Background Image' do
 
   describe 'with an invalid location entry' do 
     it 'returns an error message' do 
-      headers = { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-      
       @location = ''
       error = {:error => 400, 
                :message => "No results found for \'#{@location}\'"}
 
       allow(Api::V1::BackgroundImageFacade).to receive(:get_image).with(@location).and_return(error)
 
-      get "/api/v1/backgrounds?location=#{@location}", headers: headers
+      get "/api/v1/backgrounds?location=#{@location}", headers: defined_headers
 
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      response_body = parse_json
 
       expect(response.status).to eq 400
       expect(response_body[:error]).to eq(400)

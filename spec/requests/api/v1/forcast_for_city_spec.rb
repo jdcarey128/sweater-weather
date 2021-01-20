@@ -1,6 +1,8 @@
 require 'rails_helper' 
 
 RSpec.describe 'Forecast' do 
+  # See rails helper for defined_headers and parse_json 
+  
   describe 'with valid city,state entry' do 
     before :each do 
       coords = {:lat=>39.738453, :lng=>-104.984853}
@@ -10,12 +12,7 @@ RSpec.describe 'Forecast' do
       allow(Api::V1::CoordinateService).to receive(:get_coordinates).with('denver,co').and_return(coords)
       allow(Api::V1::ForecastService).to receive(:get_forecast).with(coords).and_return(forecast)
 
-      headers = { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-
-      get '/api/v1/forecast?location=denver,co', headers: headers
+      get '/api/v1/forecast?location=denver,co', headers: defined_headers
 
       expect(response.status).to eq 200
       @response = JSON.parse(response.body) 
@@ -135,18 +132,12 @@ RSpec.describe 'Forecast' do
       coords = {:lat=>39.738453, :lng=>''}
       allow(Api::V1::CoordinateService).to receive(:get_coordinates).with('denver,co').and_return(coords)
       
-      
-      headers = { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-      
       VCR.use_cassette('forecast_error') do 
-        get '/api/v1/forecast?location=denver,co', headers: headers
+        get '/api/v1/forecast?location=denver,co', headers: defined_headers
       end
 
       expect(response.status).to eq 400
-      result = JSON.parse(response.body, symbolize_names: true)
+      result = parse_json
       expect(result[:error]).to eq(400)
       expect(result[:message]).to be_a(String)
     end
