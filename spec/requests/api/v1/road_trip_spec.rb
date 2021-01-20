@@ -47,6 +47,23 @@ RSpec.describe 'User Road Trip' do
   end
 
   describe 'with invalid api_key and invalid locations' do 
+    it 'responds with an error message that api_key is invalid' do 
+      api_key = 'invalid-api-key'
+      origin = 'Denver, CO'
+      destination = 'Boulder, CO'
+      travel_params = {
+        origin: origin,
+        destination: destination
+      }
 
+      # Request 
+      body = rt_body(origin, destination, api_key)
+      post '/api/v1/road_trip', headers: defined_headers, params: body.to_json 
+
+      expect(response.status).to eq 400
+      response_body = parse_json 
+      expect(response_body[:error]).to eq(400)
+      expect(response_body[:message]).to eq('Invalid api key')
+    end
   end
 end
