@@ -10,7 +10,7 @@ module Api
       private 
 
       def travel_params 
-        params.permit(:start, :destination)
+        params.permit(:origin, :destination)
       end
     end
   end

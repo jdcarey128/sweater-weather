@@ -4,7 +4,7 @@ module Api
       
       def self.get_roadtrip_forecast(travel_params)
         road_trip = get_destination_info(travel_params)
-        
+
         return impossible_route(travel_params) if road_trip.is_a?(Hash)
         
         forecast = get_destination_forecast(road_trip)
