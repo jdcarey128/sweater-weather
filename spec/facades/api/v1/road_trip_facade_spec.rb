@@ -20,7 +20,7 @@ RSpec.describe Api::V1::RoadTripFacade do
       result = Api::V1::RoadTripFacade.get_roadtrip_forecast(travel_params)
       road_trip = result.road_trip
       forecast = result.forecast
-  
+      
       expect(result).to be_a(OpenStruct)
       expect(road_trip).to be_a(Api::V1::RoadTrip)
       expect(forecast).to be_a(Api::V1::Forecast)
