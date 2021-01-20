@@ -21,6 +21,21 @@ module Api
         # Return error for invalid forecast 
         Forecast.new(forecast_info, road_trip.travel_time)
       end 
+
+      def self.get_destination_restaurant(food, travel_params)
+        road_trip = get_destination_info(travel_params)
+        forecast = get_destination_forecast(road_trip)
+        restaurant = find_restaurant(food, road_trip.destination_coords)
+        return OpenStruct.new(id: nil, 
+                              travel: road_trip, 
+                              forecast: forecast,
+                              restaurant: restaurant)
+      end
+
+      def self.find_restaurant(food, coords)
+        restaurant_info = RestaurantService.find_restaurant(food, coords)
+        Restaurant.new(restaurant_info)
+      end
     end
   end
 end
