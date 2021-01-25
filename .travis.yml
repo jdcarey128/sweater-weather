@@ -10,6 +10,7 @@ deploy:
   provider: heroku 
   api_key:
     secure: nWj5upU/7HHCYmP8FFrqQNwxKRv45sBxCBXwAebzKLPeJ6jdrQaFbhp/78hRUo8h2rY47JhTkmB4n2uz8jGy/bJTTtmzrA9ODHP67hUNSP8aT9RzlyRWsaSAqPqjdfR3mgCqtBHjxaD3p1hAmnfP5v16O3aPDwNX7zcleCgV5a1FP5w1M6M/nUc7I5SkKe00h8BeKy9VFoafI5G7NgN80LnX3czVMqXYrrFhww+aNMPwb5aHFdpMHkCA3t0v1SeYabkKwxdslkuv25ze6gqBTew9voLTQ3HFMogVrYRV3s+xLOIIpOLOrCezYG94L2E9tw7RH9zzW+eqadIkwqYU4+sVo0Ge1EMnCGYZm8gxS01MZtOKCPXJdWSlJgYJjPEuxuYeHXcwzsdXbXqmW3zFjhFiHGXnB/VBDuHhGmXjssEQrXbgZxWdc9DccUgn3y/cUlmfCQqrlpazJnO8P57TIJRXEaAAMabYU+1LowHDxmcWja00Jx/NXkWubKSJAB5zZgQLFxnJxwYm9VBf4WBh1uTs3mJE0R9CT/ISzrJTIceuFqKThyJ9ysvntxPJMYCDKDW+KIb0/OVf+IBHjX1Vm/1LAjwCTP3jW+JWj/qbbS4UUtj/6CiePEsFHZhkhvmvGZi9CtvZZbkyHsYRwARlJVQyThGwhZJz7tHhO0Mk2W4=
+  skip_cleanup: true 
   on: 
     all_branches: true 
   app: sweater-weather-final 
