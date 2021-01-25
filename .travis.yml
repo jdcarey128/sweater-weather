@@ -1,6 +1,6 @@
 language: ruby 
 rbenv: 
-- 1.1.2
+- 2.5.3
 script: 
-- bundle exec rails db:{create,migrate,seed}
+- rails db:{create,migrate,seed} RAILS_ENV=test
 - bundle exec rspec 
