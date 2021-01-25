@@ -7,10 +7,10 @@ script:
 - bundle exec rails db:{create,migrate} RAILS_ENV=test
 - bundle exec rspec
 deploy:
-  provider: heroku 
+  provider: heroku
   api_key:
-    secure: nWj5upU/7HHCYmP8FFrqQNwxKRv45sBxCBXwAebzKLPeJ6jdrQaFbhp/78hRUo8h2rY47JhTkmB4n2uz8jGy/bJTTtmzrA9ODHP67hUNSP8aT9RzlyRWsaSAqPqjdfR3mgCqtBHjxaD3p1hAmnfP5v16O3aPDwNX7zcleCgV5a1FP5w1M6M/nUc7I5SkKe00h8BeKy9VFoafI5G7NgN80LnX3czVMqXYrrFhww+aNMPwb5aHFdpMHkCA3t0v1SeYabkKwxdslkuv25ze6gqBTew9voLTQ3HFMogVrYRV3s+xLOIIpOLOrCezYG94L2E9tw7RH9zzW+eqadIkwqYU4+sVo0Ge1EMnCGYZm8gxS01MZtOKCPXJdWSlJgYJjPEuxuYeHXcwzsdXbXqmW3zFjhFiHGXnB/VBDuHhGmXjssEQrXbgZxWdc9DccUgn3y/cUlmfCQqrlpazJnO8P57TIJRXEaAAMabYU+1LowHDxmcWja00Jx/NXkWubKSJAB5zZgQLFxnJxwYm9VBf4WBh1uTs3mJE0R9CT/ISzrJTIceuFqKThyJ9ysvntxPJMYCDKDW+KIb0/OVf+IBHjX1Vm/1LAjwCTP3jW+JWj/qbbS4UUtj/6CiePEsFHZhkhvmvGZi9CtvZZbkyHsYRwARlJVQyThGwhZJz7tHhO0Mk2W4=
-  skip_cleanup: true 
-  on: 
-    all_branches: true 
-  app: sweater-weather-final 
+    secure: aebdA9NQVYOAPQhp9eRBWI9SNAcid+LsV5HPYEuNCLeXYcML/wU8BfyVaGM/LBKVhSBweUfjAmAXwMxffOVYcKBHibXrNlmiEfW+/b5e/GwRlNoF/+9awzQlGj8J2U5iSMviPcL/Ga1mnBTeL+JJ/Nn39Js9srFtZoi0Y+oPMWLTBEoJntQNXgkoiPUi2EEPIVn1tISGViK+xG9KwnjqdSkxd4Gx9hGbM5K17DOHrAF0r6PgSKpmisexyxMbKZRMC3n8UwbDrfgGLI3lrJf9mZmOZ3JeI8MPuRS7eEFGAX4pyhcS2a4igt4aKjAondVyS0p4rRn7tfEBpWoF4IZB7RFap6lLOHP7fXhcow6FRDgCvu+My5IBv2LxeKXrzTPVxP0uJVoQ989t49P2P0+2YGZEWgYMl4Ct0TFFYmha/zuwdPl3YCchG34Z+TPmNJ/6vcY+wZ7EbE4jy7Fc11KaqFHaQUSGmQyaf09DGu6hBbkczl2rXD2hriol2J6PdSujZt1mCoxBKYmZaKNau3WyybhkRQA4ztY2iViGXPMTNJ4VwY5uc9HqgmUy65hdfEO3Jsk/ho5kuva77yTFvUIlIb/uT77cnYTllveHz67n2Dl8KrAnG7U/S/uhpgUxA257EKIBDN9bFWZaLP4NPzAPybQyz/O8IhzRdEab5xNJFGY=
+  skip_cleanup: true
+  on:
+    all_branches: true
+  app: sweater-weather-final
