@@ -1,1 +1,6 @@
 language: ruby 
+rbenv: 
+- 1.1.2
+script: 
+- bundle exec rails db:{create,migrate,seed}
+- bundle exec rspec 
